@@ -3,13 +3,13 @@ package rentalService.external;
 import lombok.Data;
 
 @Data
-public class Delivery {
+public class MyOrder {
 
         private Long id;
-        private Long rentalId;
-        private int qty;
-        private String status;
-
+        private String productName;
+        private String rentalStatus;
+        private Long returnId;
+        private int rentalQty;
         /*
         public Long getId() {
             return id;
