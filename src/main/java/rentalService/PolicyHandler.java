@@ -31,36 +31,5 @@ public class PolicyHandler{
             ProductRepository.save(product);
         }
     }
-
-    @Autowired
-    RentalRepository RentalRepository;
-
-    @StreamListener(KafkaProcessor.INPUT)
-    public void wheneverDelivered_DeliveryStatus(@Payload Delivered delivered){
-
-        if(delivered.isMe()){
-            Optional<Rental> rentalOptional = RentalRepository.findById(delivered.getRentalId());
-            Rental rental = rentalOptional.get();
-            rental.setStatus(delivered.getStatus());
-            rental.setDeliveryId(delivered.getId());
-
-            RentalRepository.save(rental);
-        }
-
-    }
-    @StreamListener(KafkaProcessor.INPUT)
-    public void wheneverOutOfStockRentalCanceled_OutOfStockRentalCancelStatus(@Payload OutOfStockRentalCanceled outOfStockRentalCanceled){
-
-        if(outOfStockRentalCanceled.isMe()){
-            Optional<Rental> rentalOptional = RentalRepository.findById(outOfStockRentalCanceled.getRentalId());
-            Rental rental = rentalOptional.get();
-            rental.setStatus(outOfStockRentalCanceled.getStatus());
-
-            RentalRepository.save(rental);
-        }
-
-    }
-
-
-
+   
 }

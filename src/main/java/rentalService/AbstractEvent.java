@@ -43,7 +43,7 @@ public class AbstractEvent {
             /**
              * spring streams 방식
              */
-            KafkaProcessor processor = RentalApplication.applicationContext.getBean(KafkaProcessor.class);
+            KafkaProcessor processor = ReturnApplication.applicationContext.getBean(KafkaProcessor.class);
             MessageChannel outputChannel = processor.outboundTopic();
 
             outputChannel.send(MessageBuilder
